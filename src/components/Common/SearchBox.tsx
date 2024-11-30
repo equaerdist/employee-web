@@ -12,6 +12,8 @@ interface SearchBoxProps {
   searchValue: string;
   setSearchValue: (v: string) => void;
   isLoading: boolean;
+  width?: number | string | null | undefined;
+  placeholder?: string | null | undefined;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({
@@ -19,6 +21,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   searchValue,
   setSearchValue,
   isLoading,
+  width,
+  placeholder,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -27,7 +31,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   return (
     <Box
       sx={{
-        width: "100%",
+        width: width ?? "100%",
         backgroundColor: "var(--bg)",
         borderRadius: "8px",
         boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
@@ -44,7 +48,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Search"
+            label={placeholder ?? "Поиск"}
             variant="outlined"
             sx={{
               input: {

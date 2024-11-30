@@ -7,10 +7,12 @@ import { Error } from "../Common/Error";
 import { employeeMock } from "../../mocks/faker";
 import { EmployeeProfile } from "../EmployeeProfile/EmployeeProfile";
 import { Box } from "@mui/material";
-import { NameSearch } from "../NameSearch/NameSearch";
+import { NameSearch } from "../Searches/NameSearch/NameSearch";
+import { useSearchBox } from "../../hooks/useSearchBox";
 
 export const EmployeePage = () => {
   const { id } = useParams<{ id: string }>();
+  const [name, setName] = useSearchBox();
   const {
     data: data = employeeMock,
     isLoading,
@@ -19,7 +21,7 @@ export const EmployeePage = () => {
   return (
     <Section>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        <NameSearch></NameSearch>
+        <NameSearch value={name} setValue={setName}></NameSearch>
         {isLoading ? (
           <Loading />
         ) : isError ? (
