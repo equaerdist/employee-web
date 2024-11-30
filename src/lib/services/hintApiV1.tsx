@@ -9,6 +9,8 @@ import { GetEmployeePositionsResponse } from "../../types/Contracts/V1/Hint/GetE
 import { GetEmployeeProjectsRequest } from "../../types/Contracts/V1/Hint/GetEmployeeProjectsRequest";
 import { GetEmployeeProjectsResponse } from "../../types/Contracts/V1/Hint/GetEmployeeProjectsResponse";
 import { GetEmployeeUnitsResponse } from "../../types/Contracts/V1/Hint/GetEmployeeUnitsResponse";
+import { GetEmployeeNamesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeNamesRequest";
+import { GetEmployeeNamesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeNamesResponse";
 
 export const hintApi = createApi({
   reducerPath: "hintApi",
@@ -44,5 +46,20 @@ export const hintApi = createApi({
     >({
       query: (req) => ({ url: "", method: "POST", body: req }),
     }),
+    getEmployeeNames: builder.query<
+      GetEmployeeNamesResponse,
+      GetEmployeeNamesRequest
+    >({
+      query: (req) => ({ url: "", method: "POST", body: req }),
+    }),
   }),
 });
+
+export const {
+  useGetEmployeeCitiesQuery,
+  useGetEmployeePositionsQuery,
+  useGetEmployeeProjectsQuery,
+  useGetEmployeeRolesQuery,
+  useGetEmployeeUnitsQuery,
+  useGetEmployeeNamesQuery,
+} = hintApi;

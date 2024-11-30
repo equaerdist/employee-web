@@ -1,0 +1,113 @@
+import React from "react";
+import {
+  TextField,
+  MenuItem,
+  Autocomplete,
+  Box,
+  LinearProgress,
+} from "@mui/material";
+
+interface SearchBoxProps {
+  options: string[];
+  searchValue: string;
+  setSearchValue: (v: string) => void;
+  isLoading: boolean;
+}
+
+const SearchBox: React.FC<SearchBoxProps> = ({
+  options,
+  searchValue,
+  setSearchValue,
+  isLoading,
+}) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        backgroundColor: "var(--bg)",
+        borderRadius: "8px",
+        boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
+        padding: "10px",
+        position: "relative",
+      }}
+    >
+      <Autocomplete
+        freeSolo
+        value={searchValue}
+        onInputChange={(_, newValue) => setSearchValue(newValue)}
+        options={options}
+        inputValue={searchValue}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Search"
+            variant="outlined"
+            sx={{
+              input: {
+                color: "var(--text)",
+              },
+              label: {
+                color: "var(--text)",
+              },
+              fieldset: {
+                borderColor: "var(--bg-dark)",
+              },
+              "&:hover fieldset": {
+                borderColor: "var(--brand)",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "var(--brand)",
+              },
+            }}
+            onChange={handleInputChange}
+            inputProps={{
+              ...params.inputProps,
+              style: {
+                backgroundColor: "var(--bg-dark)",
+              },
+            }}
+          />
+        )}
+        renderOption={(props, option) =>
+          isLoading ? (
+            <MenuItem
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                color: "var(--brand)",
+              }}
+            >
+              <LinearProgress
+                sx={{
+                  backgroundColor: "var(--brand)",
+                  height: "4px",
+                  width: "100%",
+                }}
+              />
+            </MenuItem>
+          ) : (
+            <MenuItem
+              {...props}
+              sx={{
+                backgroundColor: "var(--bg-dark)",
+                color: "var(--text)",
+                "&:hover": {
+                  backgroundColor: "var(--brand)",
+                  color: "var(--bg)",
+                },
+              }}
+            >
+              {option}
+            </MenuItem>
+          )
+        }
+      />
+    </Box>
+  );
+};
+
+export default SearchBox;
