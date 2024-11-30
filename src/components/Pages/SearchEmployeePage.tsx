@@ -18,7 +18,6 @@ import NothingFound from "../Common/NothingFound";
 import { Loading } from "../Common/Loading";
 import { Error } from "../Common/Error";
 import { useNavigate } from "react-router";
-import { baseEmployeeMock } from "../../mocks/faker";
 
 export const SearchEmployeePage = () => {
   const navigate = useNavigate();
@@ -30,8 +29,7 @@ export const SearchEmployeePage = () => {
   const [city, setCity] = useSearchBox();
   const ref = useRef<HTMLDivElement | null>(null);
   const { page, pageSize, handleScroll } = useScrollPagination(ref);
-  const employees = [baseEmployeeMock];
-  const { isLoading, isError } = useGetBaseEmployeesQuery(
+  const { employees, isLoading, isError } = useGetBaseEmployeesQuery(
     {
       city: city,
       full_name: name,
