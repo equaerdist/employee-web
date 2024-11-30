@@ -51,14 +51,23 @@ const SearchBox: React.FC<SearchBoxProps> = ({
             label={placeholder ?? "Поиск"}
             variant="outlined"
             sx={{
+              borderColor: "var(--brand)",
               input: {
                 color: "var(--text)",
               },
               label: {
+                ":focus": { color: "var(--brand)" },
                 color: "var(--text)",
               },
               fieldset: {
+                ":hover": { color: "var(--brand)" },
                 borderColor: "var(--bg-dark)",
+              },
+              ":hover": {
+                borderColor: "var(--brand)",
+              },
+              ":focus": {
+                borderColor: "var(--brand)",
               },
               "&:hover fieldset": {
                 borderColor: "var(--brand)",
@@ -66,14 +75,19 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               "&.Mui-focused fieldset": {
                 borderColor: "var(--brand)",
               },
-            }}
-            onChange={handleInputChange}
-            inputProps={{
-              ...params.inputProps,
-              style: {
-                backgroundColor: "var(--bg-dark)",
+              "& .MuiOutlinedInput-root": {
+                "& fiedset": {
+                  borderColor: "var(--brand)",
+                },
+                "&:hover fieldset": {
+                  borderColor: "var(--brand)",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "var(--brand)",
+                },
               },
             }}
+            onChange={handleInputChange}
           />
         )}
         renderOption={(props, option) =>
@@ -100,8 +114,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                 backgroundColor: "var(--bg-dark)",
                 color: "var(--text)",
                 "&:hover": {
-                  backgroundColor: "var(--brand)",
-                  color: "var(--bg)",
+                  backgroundColor: "var(--bg-dark)",
+                  color: "var(--brand)",
                 },
               }}
             >

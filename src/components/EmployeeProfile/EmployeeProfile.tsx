@@ -9,9 +9,11 @@ import {
 } from "@mui/material";
 import { EmployeeBaseProfile } from "../EmployeeBaseProfile/EmployeeProfile";
 import { Employee } from "../../types/Employee";
+import { useNavigate } from "react-router";
 
 export const EmployeeProfile = ({ data }: { data: Employee }) => {
   const initials = `${data.name[0]}${data.family_name[0]}`.toUpperCase();
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -53,7 +55,10 @@ export const EmployeeProfile = ({ data }: { data: Employee }) => {
           }}
         >
           {data.Teammates.map((t) => (
-            <EmployeeBaseProfile data={t}></EmployeeBaseProfile>
+            <EmployeeBaseProfile
+              data={t}
+              onClick={() => navigate(`/employee/${t.id}`)}
+            ></EmployeeBaseProfile>
           ))}
         </Box>
       </Box>

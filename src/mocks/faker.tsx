@@ -1,4 +1,5 @@
 import { BaseEmployee } from "../types/Contracts/V1/Common/BaseEmployee";
+import { Unit } from "../types/Contracts/V1/Common/Unit";
 import { Employee } from "../types/Employee";
 
 export const baseEmployeeMock: BaseEmployee = {
@@ -51,4 +52,30 @@ export const employeeMock: Employee = {
   Teammates: Array.from({ length: 5 }, (_, i) => i).map((_) =>
     randomBaseEmployee(undefined, _ == 1)
   ),
+  unit_id: 1,
+};
+
+export const teamUnitMock: Unit = {
+  id: 1,
+  name: "Development Team",
+  unit_parent_id: 3,
+  leader_full_name: "John Doe",
+  participants: Array.from({ length: 5 }, (_, i) => i).map((_) =>
+    randomBaseEmployee(undefined, _ == 1)
+  ),
+  units: [],
+};
+
+export const departmentUnitMock: Unit = {
+  id: 1,
+  name: "Development Team",
+  unit_parent_id: 1,
+
+  leader_full_name: "John Doe",
+  units: Array.from({ length: 5 }, (_, i) => i).map((_) => ({
+    ...teamUnitMock,
+    participants: [],
+    units: Array.from({ length: 5 }, (_, i) => i).map((_) => teamUnitMock),
+  })),
+  participants: [],
 };

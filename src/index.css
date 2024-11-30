@@ -1,6 +1,6 @@
 @import url("./bootstrap.min.css");
 body {
-  width: 97vw;
+  width: calc(100vw - 10px);
   --bg: #2c3135;
   --brand: #ff0032;
   --text: white;

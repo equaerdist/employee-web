@@ -1,3 +1,3 @@
-export interface GetEmployeeUnitRequest {
+export interface GetUnitRequest {
   id: number;
 }

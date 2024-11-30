@@ -17,8 +17,11 @@ import { useRef } from "react";
 import NothingFound from "../Common/NothingFound";
 import { Loading } from "../Common/Loading";
 import { Error } from "../Common/Error";
+import { useNavigate } from "react-router";
+import { baseEmployeeMock } from "../../mocks/faker";
 
 export const SearchEmployeePage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useSearchBox();
   const [position, setPosition] = useSearchBox();
   const [project, setProject] = useSearchBox();
@@ -27,8 +30,8 @@ export const SearchEmployeePage = () => {
   const [city, setCity] = useSearchBox();
   const ref = useRef<HTMLDivElement | null>(null);
   const { page, pageSize, handleScroll } = useScrollPagination(ref);
-
-  const { employees, isLoading, isError } = useGetBaseEmployeesQuery(
+  const employees = [baseEmployeeMock];
+  const { isLoading, isError } = useGetBaseEmployeesQuery(
     {
       city: city,
       full_name: name,
@@ -93,7 +96,7 @@ export const SearchEmployeePage = () => {
             onScroll={handleScroll}
             ref={ref}
             style={{
-              maxHeight: "400px",
+              maxHeight: "500px",
               display: "flex",
               overflowY: "scroll",
               flexWrap: "wrap",
@@ -102,7 +105,10 @@ export const SearchEmployeePage = () => {
             }}
           >
             {employees.map((t) => (
-              <EmployeeBaseProfile data={t}></EmployeeBaseProfile>
+              <EmployeeBaseProfile
+                data={t}
+                onClick={() => navigate(`/employee/${t.id}`)}
+              ></EmployeeBaseProfile>
             ))}
           </div>
 

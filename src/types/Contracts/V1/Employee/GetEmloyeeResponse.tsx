@@ -12,5 +12,6 @@ export interface GetEmployeeResponse {
   office_address: string; //ANCHOR - проспект Мира, 14, 3 этаж, офис 301
   position: string; //ANCHOR - Senior backend
   birth_date: Date; //ANCHOR - 10.09.23
+  unit_id: number | null;
   Teammates: BaseEmployee[];
 }
