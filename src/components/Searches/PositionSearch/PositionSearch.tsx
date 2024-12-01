@@ -1,21 +1,19 @@
-import { useDeferredValue, useState } from "react";
 import SearchBox from "../../Common/SearchBox";
 import { useGetEmployeePositionsQuery } from "../../../lib/services/hintApiV1";
+import { SpecifiedSearchProps } from "../SpecifiedSearchProps";
 
-export const PositionSearch = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const deferredValue = useDeferredValue(searchValue);
+export const PositionSearch = ({ value, setValue }: SpecifiedSearchProps) => {
   const { data: { positions } = { positions: [] }, isLoading } =
     useGetEmployeePositionsQuery({
-      position_search_term: deferredValue,
+      position_search_term: value,
     });
 
   return (
     <SearchBox
       placeholder={"Поиск по позициям"}
       width={"40%"}
-      searchValue={deferredValue}
-      setSearchValue={setSearchValue}
+      searchValue={value}
+      setSearchValue={setValue}
       options={isLoading ? ["1"] : positions}
       isLoading={isLoading}
     ></SearchBox>

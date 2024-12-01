@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { GetEmployeeRolesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeRolesResponse";
-import { GetEmployeeRolesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeRolesRequest";
 import { GetEmployeeUnitsRequest } from "../../types/Contracts/V1/Hint/GetEmployeeUnitsRequest";
 import { GetEmployeePositionsRequest } from "../../types/Contracts/V1/Hint/GetEmployeePositionsRequest";
 import { GetEmployeePositionsResponse } from "../../types/Contracts/V1/Hint/GetEmployeePositionsResponse";
@@ -11,6 +10,7 @@ import { GetEmployeeNamesRequest } from "../../types/Contracts/V1/Hint/GetEmploy
 import { GetEmployeeNamesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeNamesResponse";
 import { GetEmployeeCitiesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeCItiesRequest";
 import { GetEmployeeCitiesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeCitiesResponse";
+import { GetEmployeeRolesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeRolesRequest";
 
 export const hintApi = createApi({
   reducerPath: "hintApi",

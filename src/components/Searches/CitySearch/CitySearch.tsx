@@ -1,4 +1,3 @@
-import { useDeferredValue, useState } from "react";
 import SearchBox from "../../Common/SearchBox";
 import { useGetEmployeeCitiesQuery } from "../../../lib/services/hintApiV1";
 import { SpecifiedSearchProps } from "../SpecifiedSearchProps";
