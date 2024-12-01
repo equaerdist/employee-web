@@ -34,7 +34,9 @@ export const employeeApi = createApi({
         );
       },
       serializeQueryArgs: ({ queryArgs, endpointName }) => {
-        return `${endpointName}-${queryArgs.limit}`;
+        return `${endpointName}-${queryArgs.limit}
+        -${queryArgs.city}-${queryArgs.full_name}-${queryArgs.position}-${queryArgs.project}
+        -${queryArgs.role}-${queryArgs.unit}`;
       },
       merge: (current, incoming) => {
         baseEmployeesAdapter.addMany(
