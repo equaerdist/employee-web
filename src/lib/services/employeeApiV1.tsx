@@ -10,20 +10,20 @@ export const baseEmployeesAdapter = createEntityAdapter<BaseEmployee>();
 
 export const employeeApi = createApi({
   reducerPath: "employeeApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "api/v1/employee" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/" }),
   endpoints: (builder) => ({
     getEmployeeById: builder.query<GetEmployeeResponse, GetEmployeeRequest>({
-      query: (req) => ({ url: ``, method: "POST", body: req }),
+      query: (req) => ({ url: `employee`, method: "POST", body: req }),
     }),
     getBaseEmployees: builder.query<
       EntityState<BaseEmployee, number>,
       GetBaseEmployeesRequest
     >({
-      query: (req) => ({ url: "", method: "POST", body: req }),
+      query: (req) => ({ url: "employees", method: "POST", body: req }),
       transformResponse: (res: GetBaseEmployeesResponse) => {
         return baseEmployeesAdapter.addMany(
           baseEmployeesAdapter.getInitialState(),
-          res.employees
+          res?.employees ?? []
         );
       },
       keepUnusedDataFor: 1,

@@ -1,6 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GetEmployeeCitiesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeCitiesResponse";
-import { GetEmployeeCitiesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeCItiesRequest";
 import { GetEmployeeRolesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeRolesResponse";
 import { GetEmployeeRolesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeRolesRequest";
 import { GetEmployeeUnitsRequest } from "../../types/Contracts/V1/Hint/GetEmployeeUnitsRequest";
@@ -11,10 +9,13 @@ import { GetEmployeeProjectsResponse } from "../../types/Contracts/V1/Hint/GetEm
 import { GetEmployeeUnitsResponse } from "../../types/Contracts/V1/Hint/GetEmployeeUnitsResponse";
 import { GetEmployeeNamesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeNamesRequest";
 import { GetEmployeeNamesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeNamesResponse";
+import { GetEmployeeCitiesRequest } from "../../types/Contracts/V1/Hint/GetEmployeeCItiesRequest";
+import { GetEmployeeCitiesResponse } from "../../types/Contracts/V1/Hint/GetEmployeeCitiesResponse";
 
 export const hintApi = createApi({
   reducerPath: "hintApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "api/v1/hint" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/hint" }),
+
   endpoints: (builder) => ({
     getEmployeeCities: builder.query<
       GetEmployeeCitiesResponse,

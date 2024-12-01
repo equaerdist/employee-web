@@ -106,7 +106,7 @@ const EmployeeCard = ({ data }: { data: Employee }) => {
               Дата рождения:
             </Typography>
             <Typography variant="body2">
-              {data.birth_date.toLocaleDateString("ru-RU")}
+              {data.birth_date.toString()}
             </Typography>
           </Box>
         </Stack>

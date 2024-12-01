@@ -16,6 +16,7 @@ export const UnitPage = () => {
     isLoading,
     isError,
   } = useGetUnitByIdQuery({ id: Number(id) ?? 0 });
+  if (!unit) return <Loading></Loading>;
   return (
     <Section>
       <Box
@@ -29,7 +30,7 @@ export const UnitPage = () => {
       >
         {isLoading ? <Loading></Loading> : null}
         {isError ? <Error /> : null}
-        {unit?.participants.length > 0 ? (
+        {unit?.participants?.length > 0 ? (
           <TeamView unit={unit}></TeamView>
         ) : (
           <DepartmentView unit={unit}></DepartmentView>
@@ -60,14 +61,14 @@ const DepartmentView = ({ unit }: { unit: Unit }) => {
           justifyContent: "center",
         }}
       >
-        {unit.units.map((t) => (
+        {unit.units?.map((t) => (
           <UnitCard
             unit={t}
             onClick={() => navigate(`/unit/${t.id}`)}
           ></UnitCard>
         ))}
       </Box>
-      {unit.unit_parent_id !== null ? (
+      {unit.unit_parent_id > 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -128,14 +129,14 @@ const TeamView = ({ unit }: { unit: Unit }) => {
           justifyContent: "center",
         }}
       >
-        {unit.participants.map((t) => (
+        {unit.participants?.map((t) => (
           <EmployeeBaseProfile
             data={t}
             onClick={() => navigate(`/employee/${t.id}`)}
           ></EmployeeBaseProfile>
         ))}
       </Box>
-      {unit.unit_parent_id !== null ? (
+      {unit.unit_parent_id > 0 ? (
         <Box
           sx={{
             display: "flex",

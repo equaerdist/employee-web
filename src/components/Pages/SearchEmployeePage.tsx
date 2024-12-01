@@ -16,7 +16,6 @@ import { useScrollPagination } from "../../hooks/useScrollPagination";
 import { useRef } from "react";
 import NothingFound from "../Common/NothingFound";
 import { Loading } from "../Common/Loading";
-import { Error } from "../Common/Error";
 import { useNavigate } from "react-router";
 
 export const SearchEmployeePage = () => {
@@ -29,7 +28,7 @@ export const SearchEmployeePage = () => {
   const [city, setCity] = useSearchBox();
   const ref = useRef<HTMLDivElement | null>(null);
   const { page, pageSize, handleScroll } = useScrollPagination(ref);
-  const { employees, isLoading, isError } = useGetBaseEmployeesQuery(
+  const { employees, isLoading } = useGetBaseEmployeesQuery(
     {
       city: city,
       full_name: name,
@@ -41,6 +40,7 @@ export const SearchEmployeePage = () => {
       unit: unit,
     },
     {
+      refetchOnMountOrArgChange: true,
       selectFromResult: ({ data, ...other }) => ({
         employees: baseEmployeesAdapter
           .getSelectors()
@@ -49,6 +49,7 @@ export const SearchEmployeePage = () => {
       }),
     }
   );
+  console.log(employees);
   return (
     <Section>
       <Box
@@ -109,8 +110,6 @@ export const SearchEmployeePage = () => {
               ></EmployeeBaseProfile>
             ))}
           </div>
-
-          {isError ? <Error /> : null}
         </Box>
       </Box>
     </Section>

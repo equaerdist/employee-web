@@ -4,7 +4,7 @@ import { GetUnitRequest } from "../../types/Contracts/V1/Unit/GetUnitRequest";
 
 export const unitApi = createApi({
   reducerPath: "unitApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "api/v1/unit" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/unit" }),
   endpoints: (builder) => ({
     getUnitById: builder.query<GetUnitResponse, GetUnitRequest>({
       query: (req) => ({ url: ``, method: "POST", body: req }),

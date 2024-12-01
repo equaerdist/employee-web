@@ -26,7 +26,7 @@ export const EmployeePage = () => {
         ) : (
           <EmployeeProfile data={data}></EmployeeProfile>
         )}
-        {data.unit_id && (
+        {data.unit_id > 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -46,7 +46,7 @@ export const EmployeePage = () => {
               </Typography>
             </div>
           </Box>
-        )}
+        ) : null}
       </Box>
     </Section>
   );
